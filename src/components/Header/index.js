@@ -1,11 +1,12 @@
 import { useEffect, useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import { SearchContext } from '../SearchContext';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('darkMode')) || false);
   const { setSearchTerm } = useContext(SearchContext);
+
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
@@ -24,11 +25,18 @@ const Header = () => {
     setSearchTerm(event.target.value.toLowerCase());
   };
 
+  const handleSearchKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      setMenuOpen(false);
+      
+    }
+  };
+
   return (
     <header>
       <nav className="bg-white border-b-2 border-gray-200 px-2 sm:px-4 py-2 dark:bg-gray-900 dark:border-b-1 dark:border-gray-900">
         <div className="flex flex-wrap justify-between items-center mx-auto">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center" onClick={() => setMenuOpen(false)}>
             <img src="logo7.jpg" className="mr-2 h-8 sm:h-9" alt="Cinemate Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MovieSpot</span>
           </Link>
@@ -108,6 +116,7 @@ const Header = () => {
                 type="text"
                 id="search-navbar"
                 onChange={handleSearchChange}
+                onKeyPress={handleSearchKeyPress}
                 className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search..."
               />
@@ -117,6 +126,7 @@ const Header = () => {
                 <NavLink
                   to="/"
                   className={({ isActive }) => (isActive ? activeClass : inActiveClass)}
+                  onClick={() => setMenuOpen(false)}
                 >
                   Home
                 </NavLink>
@@ -125,6 +135,7 @@ const Header = () => {
                 <NavLink
                   to="/popular"
                   className={({ isActive }) => (isActive ? activeClass : inActiveClass)}
+                  onClick={() => setMenuOpen(false)}
                 >
                   Popular
                 </NavLink>
@@ -133,16 +144,18 @@ const Header = () => {
                 <NavLink
                   to="/toprated"
                   className={({ isActive }) => (isActive ? activeClass : inActiveClass)}
+                  onClick={() => setMenuOpen(false)}
                 >
-                  Top Rated
+                  TopRated
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/upcoming"
                   className={({ isActive }) => (isActive ? activeClass : inActiveClass)}
+                  onClick={() => setMenuOpen(false)}
                 >
-                  Upcoming
+                  upcoming
                 </NavLink>
               </li>
             </ul>

@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
 
   const filteredMovies = movies.filter(movie => 
-    movie.title.toLowerCase().includes(searchTerm)
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (

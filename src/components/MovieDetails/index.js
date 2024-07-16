@@ -24,13 +24,13 @@ const MovieDetails = () => {
   const image = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '';
 
   return (
-    <main>
-      <section className="flex justify-around flex-wrap py-5">
-        <div className="max-w-sm">
+    <main className="px-4 sm:px-8 lg:px-16 py-5">
+      <section className="flex flex-col sm:flex-row justify-around flex-wrap">
+        <div className="max-w-full sm:max-w-sm mb-4">
           {image && <img className="rounded" src={image} alt={movie.title} />}
         </div>
-        <div className="max-w-2xl text-gray-700 text-lg dark:text-white">
-          <h1 className="text-4xl font-bold my-3 text-center lg:text-left">{movie.title}</h1>
+        <div className="max-w-full sm:max-w-2xl text-gray-700 text-lg dark:text-white">
+          <h1 className="text-3xl sm:text-4xl font-bold my-3 text-center lg:text-left">{movie.title}</h1>
           <p className="my-4">{movie.overview}</p>
           {movie.genres && (
             <p className="my-7 flex flex-wrap gap-2">

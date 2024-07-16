@@ -7,7 +7,8 @@ import Popular from './components/Popular';
 import TopRated from './components/TopRated';
 import Upcoming from './components/Upcoming';
 import NotFound from './components/NotFound';
-import Footer from './components/Footer'; 
+import Footer from './components/Footer';
+import MovieDetails from './components/MovieDetails'; // Import MovieDetails component
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const MainRoutes = () => {
       <Route path="/popular" element={<Popular />} />
       <Route path="/toprated" element={<TopRated />} />
       <Route path="/upcoming" element={<Upcoming />} />
+      <Route path="/movie/:id" element={<MovieDetails />} /> {/* Add this route */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
